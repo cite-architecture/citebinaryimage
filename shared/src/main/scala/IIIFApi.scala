@@ -5,9 +5,10 @@ import edu.holycross.shot.cite._
 
 package citebinaryimage {
 
-  /** A URN for a canonically citable text or passage of text.
+  /** A Class for creating service requests resolving to binary image data
+  * and following the IIIF-API.
   *
-  * @constructor create a new [[IIPImage]] service
+  * @constructor create a new [[IIIFApi]] service
   * @param baseUrl String defining the base url of an IIPImage Server
   * @param imagePath String defining the absolute path on the server for pyramidal tiff images
   */
@@ -15,8 +16,11 @@ package citebinaryimage {
 
     val protocolString = "iiifApi"
     
-
-    def serviceRequest(u:Cite2Urn):String = {
+    /** 
+    * Returns a String, a URL that resolves to a binary image
+    * @param u Cite2Urn, the URN of an image
+    */
+     def serviceRequest(u:Cite2Urn):String = {
       try {
 
         if (u.objectComponentOption == None) {

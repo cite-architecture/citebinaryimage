@@ -42,6 +42,9 @@ package citebinaryimage {
          	throw new Exception(s"""left + height (${left} + ${width} = ${left+width}) must be <= 1""")
          }
 
+      /** 
+      Returns a string expressing the ROI as the IIIFApi expects
+      */
       def iiifRegionString:String = {
       	val l:Int = (left * 100).toInt
       	val t:Int = (top * 100).toInt
@@ -51,7 +54,9 @@ package citebinaryimage {
       	ifrs
       }
 
-  		def exists:Boolean = { true }
+      /** Returns true
+      */
+   		def exists:Boolean = { true }
   		override def toString:String = {
   			val rs:String = s"${this.leftString},${this.topString},${this.widthString},${this.heightString}"
   			rs
