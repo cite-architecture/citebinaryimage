@@ -1,5 +1,6 @@
 # `citebinaryimage`: release notes
 
+**1.1.1**:  Bug fix in update to `cex` parser.
 
 **1.1.0**: Update depenendcies and implement skelly-compliant cross building.
 
