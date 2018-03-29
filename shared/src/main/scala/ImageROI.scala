@@ -18,10 +18,10 @@ package citebinaryimage {
          val widthString:String = splitRoi(2)
          val heightString:String = splitRoi(3)
 
-         val left:Float = splitRoi(0).toFloat
-         val top:Float = splitRoi(1).toFloat
-         val width:Float = splitRoi(2).toFloat
-         val height:Float = splitRoi(3).toFloat
+         val left:Double = splitRoi(0).toDouble
+         val top:Double = splitRoi(1).toDouble
+         val width:Double = splitRoi(2).toDouble
+         val height:Double = splitRoi(3).toDouble
 
          if ( (left < 0) || ( left > 1)){
          	throw new Exception(s"""left (${left}) must be between 0 and 1""")
@@ -46,12 +46,19 @@ package citebinaryimage {
       Returns a string expressing the ROI as the IIIFApi expects
       */
       def iiifRegionString:String = {
-      	val l:Int = (left * 100).toInt
-      	val t:Int = (top * 100).toInt
-      	val w:Int = (width * 100).toInt
-      	val h:Int = (height * 100).toInt
+        val precision:Int = 5
+      	val l:Double = (truncate(left*100,precision))
+      	val t:Double = (truncate(top*100,precision))
+      	val w:Double = (truncate(width*100,precision))
+      	val h:Double = (truncate(height*100,precision))
       	val ifrs:String = s"pct:${l},${t},${w},${h}"
       	ifrs
+      }
+
+      def truncate(d:Double, precision:Int):Double = {
+         val multiplier:Int = scala.math.pow(10, precision).toInt
+         val trunced:Double =  (math floor d * multiplier) / multiplier
+         trunced
       }
 
       /** Returns true

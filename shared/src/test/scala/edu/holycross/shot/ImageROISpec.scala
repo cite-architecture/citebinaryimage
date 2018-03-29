@@ -20,9 +20,14 @@ class ImageROISpec extends FlatSpec {
 
 	it should "return an IIIFRegionString" in {
 		val rs:String = "0.1,0.2,0.3,0.4"
-		val iiifRoi:String = "pct:10,20,30,40"
+		val iiifRoiJVM:String = "pct:10.0,20.0,30.0,40.0"
+    val iiifRoiJS:String = "pct:10,20,30,40"
 		val ir:ImageROI = ImageROI(rs)
-		assert(ir.iiifRegionString == iiifRoi)
+		assert(
+      (ir.iiifRegionString == iiifRoiJVM)
+      ||
+      (ir.iiifRegionString == iiifRoiJS)
+    )
 	}
 
   it should "refuse to construct an IIIFApi object from a string with too few components" in {

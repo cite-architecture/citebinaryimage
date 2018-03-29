@@ -9,6 +9,7 @@ class CiteBinaryImageServiceSpec extends FlatSpec {
   val imagePath:String = "/project/homer/pyramidal/VenA/"
   val testImage1:Cite2Urn = Cite2Urn("urn:cite2:hmt:vaimg.2017a:VA012RN_0013")
   val testImage2:Cite2Urn = Cite2Urn("urn:cite2:hmt:vaimg.2017a:VA012RN_0013@0.1,0.2,0.3,0.4")
+  val testImage3:Cite2Urn = Cite2Urn("urn:cite2:hmt:vaimg.2017a:VA012RN_0013@0.12345,0.22345,0.32345,0.42345")
 
   "A Cite Binary Image Service" should "compile" in {
     val groupLevel = CtsUrn("urn:cts:greekLit:tlg0012:")
@@ -35,7 +36,9 @@ class CiteBinaryImageServiceSpec extends FlatSpec {
       val u:String = bis.serviceRequest(testImage2)
       assert(u.size > 0)
       assert(
-        u == "http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/VenA/VA012RN_0013.tif/pct:10,20,30,40/2000,/0/default.jpg"
+        (u == "http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/VenA/VA012RN_0013.tif/pct:10.0,20.0,30.0,40.0/2000,/0/default.jpg")
+        ||
+        (u == "http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/VenA/VA012RN_0013.tif/pct:10,20,30,40/2000,/0/default.jpg")
       )
       println(u)
     }
@@ -92,7 +95,21 @@ class CiteBinaryImageServiceSpec extends FlatSpec {
       val u:String = bis.serviceRequest(testImage2)
       assert(u.size > 0)
       assert(
-        u == "http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/VenA/VA012RN_0013.tif/pct:10,20,30,40/!600,300/0/default.jpg"
+        (u == "http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/VenA/VA012RN_0013.tif/pct:10,20,30,40/!600,300/0/default.jpg") 
+        ||
+        (u == "http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/VenA/VA012RN_0013.tif/pct:10.0,20.0,30.0,40.0/!600,300/0/default.jpg") 
+      )
+      println(u)
+  }
+
+  it should "construct an IIIFApi objec for an image+ROI at a high level of precision" in {
+      val mw:Int = 600
+      val mh:Int = 300
+      val bis:IIIFApi = IIIFApi(baseUrl = baseUrl, imagePath = imagePath, maxWidth = Some(mw), maxHeight = Some(mh))
+      val u:String = bis.serviceRequest(testImage3)
+      assert(u.size > 0)
+      assert(
+        u == "http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/VenA/VA012RN_0013.tif/pct:12.345,22.345,32.345,42.345/!600,300/0/default.jpg"
       )
       println(u)
   }
