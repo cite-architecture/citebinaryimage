@@ -16,7 +16,7 @@ lazy val crossed = crossProject.in(file(".")).
     settings(
       name := "citebinaryimage",
       organization := "edu.holycross.shot",
-      version := "1.1.2",
+      version := "1.1.3",
       licenses += ("GPL-3.0",url("https://opensource.org/licenses/gpl-3.0.html")),
       resolvers += Resolver.jcenterRepo,
       resolvers += Resolver.bintrayRepo("neelsmith", "maven"),
@@ -24,7 +24,7 @@ lazy val crossed = crossProject.in(file(".")).
         "org.scala-js" %% "scalajs-stubs" % scalaJSVersion % "provided",
         "org.scalatest" %%% "scalatest" % "3.0.1" % "test",
 
-        "edu.holycross.shot.cite" %%% "xcite" % "3.2.2",
+        "edu.holycross.shot.cite" %%% "xcite" % "3.5.0",
         "edu.holycross.shot" %%% "cex" % "6.2.1"
 
       )

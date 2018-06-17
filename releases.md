@@ -1,5 +1,9 @@
 # `citebinaryimage`: release notes
 
+
+**1.1.3**: Updated library dependencies.
+
+
 **1.1.2**:  Improve (increase) precision of ROIs. Handle how JVM and JS serialize numbers into strings differently.
 
 **1.1.1**:  Bug fix in update to `cex` parser.
