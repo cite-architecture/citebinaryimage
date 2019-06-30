@@ -1,8 +1,9 @@
 # `citebinaryimage`: release notes
 
 
-**1.1.3**: Updated library dependencies.
+**2.0.0**: Breaking change to API. Added htmlImage and linkedHtmlImage methods to IIIF class. 
 
+**1.1.3**: Updated library dependencies.
 
 **1.1.2**:  Improve (increase) precision of ROIs. Handle how JVM and JS serialize numbers into strings differently.
 

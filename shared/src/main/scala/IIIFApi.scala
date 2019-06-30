@@ -12,7 +12,7 @@ package citebinaryimage {
   * @param baseUrl String defining the base url of an IIPImage Server
   * @param imagePath String defining the absolute path on the server for pyramidal tiff images
   */
-  @JSExportAll case class IIIFApi(baseUrl:String, imagePath:String, width:Option[Int] = None, maxWidth:Option[Int] = None, maxHeight:Option[Int] = None) extends BinaryImageService {
+  @JSExportAll case class IIIFApi(baseUrl:String, imagePath:String) extends BinaryImageService {
 
     val protocolString = "iiifApi"
     
@@ -20,7 +20,7 @@ package citebinaryimage {
     * Returns a String, a URL that resolves to a binary image
     * @param u Cite2Urn, the URN of an image
     */
-     def serviceRequest(u:Cite2Urn):String = {
+     def serviceRequest(u:Cite2Urn, width:Option[Int] = None, maxWidth:Option[Int] = None, maxHeight:Option[Int] = None):String = {
       try {
 
         if (u.objectComponentOption == None) {
@@ -67,6 +67,35 @@ package citebinaryimage {
 
         val urlString = s"${baseUrl}IIIF=${imagePath}${imageID}.tif/${roiComponent}/${sizing}/0/default.jpg"
         urlString
+      } catch {
+        case e:Exception => throw CiteException(s"CiteBinaryImageService Exception: ${e}")
+      }
+    }
+
+    /** 
+    * Returns a String, an HTML <img> element for embedding an image
+    * @param u Cite2Urn, the URN of an image
+    */
+    def htmlImage(u:Cite2Urn, width:Option[Int] = None, maxWidth:Option[Int] = None, maxHeight:Option[Int] = None):String = {
+      try {
+        val url:String = serviceRequest(u,width,maxWidth,maxHeight)
+        s"""<img class="citeImage" src="${url}" />"""
+      } catch {
+        case e:Exception => throw CiteException(s"CiteBinaryImageService Exception: ${e}")
+      }
+    }
+
+    /** 
+    * Returns a String, an HTML <a> element containing an <img> element 
+    * for embedding an image
+    * @param u Cite2Urn, the URN of an image
+    * @param viewerUrl, a url to an external viewing application, assumed to take the URN value as the last request-parameter
+    */
+    def linkedHtmlImage(u:Cite2Urn, width:Option[Int] = None, maxWidth:Option[Int] = None, maxHeight:Option[Int] = None, viewerUrl:String = "http://www.homermultitext.org/ict2/?urn="):String = {
+      try {
+        val imgCode:String = htmlImage(u,width,maxWidth,maxHeight)
+        val viewerRequest:String = s"${viewerUrl}${u}"
+        s"""<a href="${viewerRequest}">${imgCode}</a>"""
       } catch {
         case e:Exception => throw CiteException(s"CiteBinaryImageService Exception: ${e}")
       }
