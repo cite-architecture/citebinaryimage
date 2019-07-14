@@ -4,7 +4,7 @@
 
 `citebinaryimage` is a cross-platform library for retrieving binary image date identified by Cite2 URNs.
 
-## Current version: 2.0.0
+## Current version: 2.0.1
 
 Status:  **active development**. [Release notes](releases.md)
 

@@ -35,10 +35,14 @@ package citebinaryimage {
          if ( (height < 0) || ( height > 1)){
          	throw new Exception(s"""height (${height}) must be between 0 and 1""")
          }
-         if ( (top + height) > 1){
+
+         // .round to allow for human imprecision, also Javascript
+         if ( (top + height).round > 1){
          	throw new Exception(s"""top + height (${top} + ${height} = ${top+height}) must be <= 1""")
          }
-         if ( (left + width) > 1){
+         
+         // .round to allow for human imprecision, also Javascript
+         if ( (left + width).round > 1){
          	throw new Exception(s"""left + height (${left} + ${width} = ${left+width}) must be <= 1""")
          }
 
