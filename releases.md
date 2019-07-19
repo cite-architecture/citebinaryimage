@@ -1,8 +1,8 @@
 # `citebinaryimage`: release notes
 
-**2.0.1**: Allow a little flexibility in checking values for ImageROIs, to account for human failty, and Javascript.
+**2.0.1**: Allow a little flexibility in checking values for ImageROIs, to account for human frailty, and Javascript.
 
-**2.0.0**: Breaking change to API. Added htmlImage and linkedHtmlImage methods to IIIF class. 
+**2.0.0**: Breaking change to API. Added htmlImage and linkedHtmlImage methods to IIIF class.
 
 **1.1.3**: Updated library dependencies.
 
