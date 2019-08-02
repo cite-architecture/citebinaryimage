@@ -1,5 +1,8 @@
 # `citebinaryimage`: release notes
 
+**3.0.0**:  API-breaking change of `CiteException` to `CiteBianryImageException` (issue #4).  Also add functions to `IIIFApi` for formatting requests in markdown.
+
+
 **2.0.1**: Allow a little flexibility in checking values for ImageROIs, to account for human frailty, and Javascript.
 
 **2.0.0**: Breaking change to API. Added htmlImage and linkedHtmlImage methods to IIIF class.

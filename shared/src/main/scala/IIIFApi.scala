@@ -15,8 +15,8 @@ package citebinaryimage {
   @JSExportAll case class IIIFApi(baseUrl:String, imagePath:String) extends BinaryImageService {
 
     val protocolString = "iiifApi"
-    
-    /** 
+
+    /**
     * Returns a String, a URL that resolves to a binary image
     * @param u Cite2Urn, the URN of an image
     */
@@ -24,14 +24,14 @@ package citebinaryimage {
       try {
 
         if (u.objectComponentOption == None) {
-          throw CiteException(s"URN must have an object component")
+          throw CiteBinaryImageException(s"URN must have an object component")
         }
         val imageID:String = u.dropExtensions.objectComponentOption.get
 
         val roiComponent:String = u.objectExtensionOption match {
           case Some(oe) => {
             val ir:ImageROI = ImageROI(oe)
-            ir.iiifRegionString 
+            ir.iiifRegionString
           }
           case _ => "full"
         }
@@ -40,7 +40,7 @@ package citebinaryimage {
         var sizing:String = ""
         width match {
           case Some(w) => {
-            if (w > 2000) { sizing = "2000,"} else { sizing = s"${w},"} 
+            if (w > 2000) { sizing = "2000,"} else { sizing = s"${w},"}
           }
           case None => sizing = "2000," // default max
         }
@@ -68,47 +68,89 @@ package citebinaryimage {
         val urlString = s"${baseUrl}IIIF=${imagePath}${imageID}.tif/${roiComponent}/${sizing}/0/default.jpg"
         urlString
       } catch {
-        case e:Exception => throw CiteException(s"CiteBinaryImageService Exception: ${e}")
+        case e:Exception => throw CiteBinaryImageException(s"CiteBinaryImageService Exception: ${e}")
       }
     }
 
-    /** 
-    * Returns a String, an HTML <img> element for embedding an image
+
+    /**
+    * Returns a markdown String for embedding an image.
+    *
+    * @param u Cite2Urn, the URN of an image.
+    */
+    def markdownImage(u: Cite2Urn,
+      caption: String = "image",
+      width: Option[Int] = None,
+      maxWidth: Option[Int] = None,
+      maxHeight: Option[Int] = None): String = {
+        try {
+          val url = serviceRequest(u, width, maxWidth, maxHeight)
+          s"![${caption}](${url})"
+
+        } catch {
+          case e:Exception => throw CiteBinaryImageException(s"CiteBinaryImageService Exception: ${e}")
+        }
+    }
+
+
+
+    /**
+    * Returns a String, an HTML <a> element containing an <img> element
+    * for embedding an image.
+    * @param u Cite2Urn, the URN of an image
+    * @param viewerUrl, a url to an external viewing application, assumed to take the URN value as the last request-parameter
+    */
+    def linkedMarkdownImage(u: Cite2Urn,
+
+      caption: String = "Linked to zoomble image",
+      width: Option[Int] = None,
+      maxWidth: Option[Int] = None,
+      maxHeight: Option[Int] = None,
+      viewerUrl: String = "http://www.homermultitext.org/ict2/?urn="): String = {
+      try {
+        val embedded = markdownImage(u, caption, width, maxWidth, maxHeight)
+        val viewerRequest  = s"${viewerUrl}${u}"
+        s"[${embedded}](${viewerRequest})"
+
+      } catch {
+        case e:Exception => throw CiteBinaryImageException(s"CiteBinaryImageService Exception: ${e}")
+      }
+    }
+
+    /**
+    * Returns a String, an HTML <img> element for embedding an image.
+    *
     * @param u Cite2Urn, the URN of an image
     */
-    def htmlImage(u:Cite2Urn, width:Option[Int] = None, maxWidth:Option[Int] = None, maxHeight:Option[Int] = None):String = {
+    def htmlImage(u:Cite2Urn, width:Option[Int] = None, maxWidth:Option[Int] = None, maxHeight:Option[Int] = None): String = {
       try {
         val url:String = serviceRequest(u,width,maxWidth,maxHeight)
         s"""<img class="citeImage" src="${url}" />"""
       } catch {
-        case e:Exception => throw CiteException(s"CiteBinaryImageService Exception: ${e}")
+        case e:Exception => throw CiteBinaryImageException(s"CiteBinaryImageService Exception: ${e}")
       }
     }
 
-    /** 
-    * Returns a String, an HTML <a> element containing an <img> element 
+    /**
+    * Returns a String, an HTML <a> element containing an <img> element
     * for embedding an image
     * @param u Cite2Urn, the URN of an image
     * @param viewerUrl, a url to an external viewing application, assumed to take the URN value as the last request-parameter
     */
-    def linkedHtmlImage(u:Cite2Urn, width:Option[Int] = None, maxWidth:Option[Int] = None, maxHeight:Option[Int] = None, viewerUrl:String = "http://www.homermultitext.org/ict2/?urn="):String = {
+    def linkedHtmlImage(u: Cite2Urn,
+      width: Option[Int] = None,
+      maxWidth: Option[Int] = None,
+      maxHeight: Option[Int] = None,
+      viewerUrl: String = "http://www.homermultitext.org/ict2/?urn="): String = {
       try {
-        val imgCode:String = htmlImage(u,width,maxWidth,maxHeight)
-        val viewerRequest:String = s"${viewerUrl}${u}"
+        val imgCode = htmlImage(u, width, maxWidth, maxHeight)
+        val viewerRequest  = s"${viewerUrl}${u}"
         s"""<a href="${viewerRequest}">${imgCode}</a>"""
+
       } catch {
-        case e:Exception => throw CiteException(s"CiteBinaryImageService Exception: ${e}")
+        case e:Exception => throw CiteBinaryImageException(s"CiteBinaryImageService Exception: ${e}")
       }
     }
 
   }
-
-  // urn:cite2:hmt:vaimg.2017a:VA012RN_0013@0.09125620,0.11955275,0.70064910,0.06909404
-
-// http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/VenA/VA012RN-0013.tif/full/2000,/0/default.jpg 
-
-//http://www.homermultitext.org/iipsrv?OBJ=IIP,1.0&FIF=/project/homer/pyramidal/VenA/VA012RN-0013.tif&RGN=0.09125620,0.11955275,0.70064910,0.06909404&WID=8000&CVT=JPEG
-
-//  http://www.homermultitext.org/iipsrv?OBJ=IIP,1.0&FIF=/project/homer/pyramidal/VenA/VA012RN-0013.tif&RGN=0.164,0.0541,0.49,0.1366&WID=9000&CVT=JPEG
-
 }
