@@ -13,9 +13,7 @@ Status:  **active development**. [Release notes](releases.md)
 
 [GPL 3.0](http://www.opensource.org/licenses/gpl-3.0.html)
 
-## Documentation
 
-In addition to the API documentation, see the [project wiki](https://github.com/cite-architecture/citebinaryimage/wiki).
 
 ## Using, building, testing
 
