@@ -1,5 +1,7 @@
 # `citebinaryimage`: release notes
 
+**3.1.0**:  Add `PathUtility` object for easy work with services following convention of laying out file system by URN components.
+
 **3.0.0**:  API-breaking change of `CiteException` to `CiteBianryImageException` (issue #4).  Also add functions to `IIIFApi` for formatting requests in markdown.
 
 

@@ -12,8 +12,8 @@ class IIIFServiceSpec extends FlatSpec {
   val testImage3  = Cite2Urn("urn:cite2:hmt:vaimg.2017a:VA012RN_0013@0.12345,0.22345,0.32345,0.42345")
 
   "An IIIF Service" should "construct an IIIFApi object given a baseUrl and Path" in {
-      val bis:IIIFApi = IIIFApi(baseUrl, imagePath)
-      val u:String = bis.serviceRequest(testImage1)
+      val bis  = IIIFApi(baseUrl, imagePath)
+      val u = bis.serviceRequest(testImage1)
       assert(u.size > 0)
       assert(
         u == "http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/VenA/VA012RN_0013.tif/full/2000,/0/default.jpg"
@@ -22,8 +22,8 @@ class IIIFServiceSpec extends FlatSpec {
   }
 
   it should "construct an IIIFApi object from a URN with an ROI" in {
-      val bis:IIIFApi = IIIFApi(baseUrl, imagePath)
-      val u:String = bis.serviceRequest(testImage2)
+      val bis  = IIIFApi(baseUrl, imagePath)
+      val u  = bis.serviceRequest(testImage2)
       assert(u.size > 0)
       assert(
         (u == "http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/VenA/VA012RN_0013.tif/pct:10.0,20.0,30.0,40.0/2000,/0/default.jpg")
