@@ -1,6 +1,6 @@
 # `citebinaryimage`: release notes
 
-**3.1.1**:  Rolled Scala-JS back to 0.6.28. Updated SBT framework.
+**3.1.2**:  Rolled Scala-JS back to 0.6.28. Updated SBT framework.
 
 **3.1.1**:  Updated Scala-JS compiler to 0.6.31. Passing all tests.
 
