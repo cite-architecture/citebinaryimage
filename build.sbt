@@ -1,4 +1,6 @@
+//name := "OHCO2 text library"
 
+// XML libraries moved in 2.11, so can't support 2.10.
 lazy val supportedScalaVersions = List("2.11.8", "2.12.4")
 
 
@@ -14,7 +16,7 @@ lazy val crossed = crossProject.in(file(".")).
       name := "citebinaryimage",
       organization := "edu.holycross.shot",
 
-      version := "3.1.1",
+      version := "3.1.2",
 
       licenses += ("GPL-3.0",url("https://opensource.org/licenses/gpl-3.0.html")),
       resolvers += Resolver.jcenterRepo,
@@ -22,9 +24,9 @@ lazy val crossed = crossProject.in(file(".")).
       libraryDependencies ++= Seq(
         "org.scala-js" %% "scalajs-stubs" % scalaJSVersion % "provided",
         "org.scalatest" %%% "scalatest" % "3.0.1" % "test",
-        "edu.holycross.shot.cite" %%% "xcite" % "4.1.1",
-        "edu.holycross.shot" %%% "cex" % "6.3.3"
 
+        "edu.holycross.shot.cite" %%% "xcite" % "4.1.1",
+        "edu.holycross.shot" %%% "cex" % "6.3.3",
       )
     ).
     jvmSettings(
@@ -42,5 +44,5 @@ lazy val crossed = crossProject.in(file(".")).
     )
 
 
-lazy val crossedJVM = crossed.jvm.enablePlugins(TutPlugin)
+lazy val crossedJVM = crossed.jvm//.enablePlugins(TutPlugin)
 lazy val crossedJS = crossed.js
