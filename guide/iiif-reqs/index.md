@@ -7,6 +7,7 @@ title: Forming IIIF requests
 **Library version @VERSION@**
 
 
+
 ```scala mdoc:invisible
 import edu.holycross.shot.citebinaryimage._
 import edu.holycross.shot.cite._
@@ -61,6 +62,8 @@ iiif.htmlImage(img, maxWidth= Some(75))
 ```scala mdoc:passthrough
 println(iiif.htmlImage(img, maxWidth =Some(75)))
 ```
+
+The linked  image requests also have an optional `viewerUrl` parameter.
 ```scala mdoc
 iiif.linkedHtmlImage(img, maxHeight=Some(150))
 ```
@@ -69,7 +72,6 @@ println(iiif.linkedHtmlImage(img, maxHeight=Some(150)))
 ```
 
 The linked markdown image can also include a caption parameter.
-
 ```scala mdoc
 iiif.linkedMarkdownImage(img, width=Some(150), caption="Folio 12 recto of the Venetus A manuscript of the Iliad")
 ```
@@ -78,6 +80,17 @@ println(iiif.linkedMarkdownImage(img, width=Some(150), caption="Folio 12 recto")
 ```
 
 
+The requests work with URNs citation regions of an image.
 
 
-The linked  image requests also have an optional `viewerUrl` parameter.
+```scala mdoc
+val citedRegion = Cite2Urn("urn:cite2:hmt:vaimg.2017a:VA012RN_0013@0.1575,0.09332,0.3879,0.03225")
+```
+
+```scala mdoc
+iiif.linkedMarkdownImage(citedRegion, width=Some(150), caption="Metrical summary of book 1")
+```
+
+```scala mdoc:passthrough
+println(iiif.linkedMarkdownImage(citedRegion, maxHeight=Some(150), caption="Metrical summary of book 1"))
+```
