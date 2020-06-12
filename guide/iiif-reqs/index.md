@@ -44,7 +44,7 @@ In addition, you can form requests formatted as:
 
 
 Each of these requests has the optional parameters to specify a width, or a maximum width or height, and a caption.
-Here is the requests for embedded images, followed by their output:
+Here are the requests for embedded images, followed by their output:
 
 
 
