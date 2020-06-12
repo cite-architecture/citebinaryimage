@@ -40,51 +40,44 @@ In addition, you can form requests formatted as:
 - markdown to embed an image in a document
 - markdown to embed an image and link to a zoomable, citable version
 - html to embed an image in a document
-- htm to embed an image and link to a zoomable, citable version
+- html to embed an image and link to a zoomable, citable version
 
 
+Each of these requests has the optional parameters to specify a width, or a maximum width or height, and a caption.
 Here is the requests for embedded images, followed by their output:
 
 
 
 ```scala mdoc
-iiif.markdownImage(img)
+iiif.markdownImage(img, width=Some(200))
 ```
 ```scala mdoc:passthrough
-println(iiif.markdownImage(img))
+println(iiif.markdownImage(img, width=Some(200)))
 ```
 
 ```scala mdoc
-iiif.linkedMarkdownImage(img)
+iiif.htmlImage(img, maxWidth= Some(75))
 ```
 ```scala mdoc:passthrough
-println(iiif.linkedMarkdownImage(img))
+println(iiif.htmlImage(img, maxWidth =Some(75)))
+```
+```scala mdoc
+iiif.linkedHtmlImage(img, maxHeight=Some(150))
+```
+```scala mdoc:passthrough
+println(iiif.linkedHtmlImage(img, maxHeight=Some(150)))
 ```
 
+The linked markdown image can also include a caption parameter.
 
 ```scala mdoc
-iiif.htmlImage(img)
+iiif.linkedMarkdownImage(img, width=Some(150), caption="Folio 12 recto of the Venetus A manuscript of the Iliad")
 ```
 ```scala mdoc:passthrough
-println(iiif.htmlImage(img))
-```
-
-
-```scala mdoc
-iiif.linkedHtmlImage(img)
-```
-```scala mdoc:passthrough
-println(iiif.linkedHtmlImage(img))
+println(iiif.linkedMarkdownImage(img, width=Some(150), caption="Folio 12 recto"))
 ```
 
 
 
-Each of these requests has the optional parameters to specify a width, or a maximum width or height.
 
-```scala mdoc
-iiif.serviceRequest(img, width = Some(200))
-```
-```scala mdoc:passthrough
-iiif.serviceRequest(img, width = Some(200))
-```
 The linked  image requests also have an optional `viewerUrl` parameter.
