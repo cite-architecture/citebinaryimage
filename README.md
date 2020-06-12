@@ -13,7 +13,10 @@ Status:  **active development**. [Release notes](releases.md)
 
 [GPL 3.0](http://www.opensource.org/licenses/gpl-3.0.html)
 
+## Documentation
 
+- [user guide](https://cite-architecture.github.io/citebinaryimage/)
+- [API docs](https://cite-architecture.github.io/cite-api-docs/citebinaryimage/api/edu/holycross/shot/citebinaryimage/index.html)
 
 ## Using, building, testing
 
