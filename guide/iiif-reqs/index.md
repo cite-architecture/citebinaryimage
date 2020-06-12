@@ -43,8 +43,8 @@ In addition, you can form requests formatted as:
 - html to embed an image and link to a zoomable, citable version
 
 
-Each of these requests has the optional parameters to specify a width, or a maximum width or height, and a caption.
-Here are the requests for embedded images, followed by their output:
+Each of these requests has optional parameters to specify a width, or a maximum width or height.
+Here are examples of each request for embedded images, followed by their output:
 
 
 
