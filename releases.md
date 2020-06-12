@@ -1,5 +1,8 @@
 # `citebinaryimage`: release notes
 
+
+**3.2.0**: Support SJS 1.0.0.
+
 **3.1.1**:  Updated Scala-JS compiler to 0.6.31. Passing all tests.
 
 **3.1.0**:  Add `PathUtility` object for easy work with services following convention of laying out file system by URN components.

@@ -1,10 +1,10 @@
 package edu.holycross.shot.citebinaryimage
 
 import edu.holycross.shot.cite._
-import scala.scalajs.js
 
-object Main extends js.JSApp {
-  def main(): Unit = {
+
+object Main {
+  def main(args: Array[String]): Unit = {
 
     val mini = CtsUrn("urn:cts:greekLit:tlg0012.tlg001:1.1")
     println(mini)
