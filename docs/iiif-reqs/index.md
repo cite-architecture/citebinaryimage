@@ -79,9 +79,6 @@ val citedRegion = Cite2Urn("urn:cite2:hmt:vaimg.2017a:VA012RN_0013@0.1575,0.0933
 // citedRegion: Cite2Urn = Cite2Urn(
 //   "urn:cite2:hmt:vaimg.2017a:VA012RN_0013@0.1575,0.09332,0.3879,0.03225"
 // )
-```
-
-```scala
 iiif.linkedMarkdownImage(citedRegion, width=Some(150), caption="Metrical summary of book 1")
 // res9: String = "[![Metrical summary of book 1](http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/deepzoom/hmt/vaimg/2017a/VA012RN_0013.tif/pct:15.75,9.332,38.79,3.225/150,/0/default.jpg)](http://www.homermultitext.org/ict2/?urn=urn:cite2:hmt:vaimg.2017a:VA012RN_0013@0.1575,0.09332,0.3879,0.03225)"
 ```

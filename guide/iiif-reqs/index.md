@@ -85,9 +85,6 @@ The requests work with URNs citing regions of an image.
 
 ```scala mdoc
 val citedRegion = Cite2Urn("urn:cite2:hmt:vaimg.2017a:VA012RN_0013@0.1575,0.09332,0.3879,0.03225")
-```
-
-```scala mdoc
 iiif.linkedMarkdownImage(citedRegion, width=Some(150), caption="Metrical summary of book 1")
 ```
 
