@@ -71,7 +71,7 @@ iiif.linkedMarkdownImage(img, width=Some(150), caption="Folio 12 recto of the Ve
 [![Folio 12 recto](http://www.homermultitext.org/iipsrv?IIIF=/project/homer/pyramidal/deepzoom/hmt/vaimg/2017a/VA012RN_0013.tif/full/150,/0/default.jpg)](http://www.homermultitext.org/ict2/?urn=urn:cite2:hmt:vaimg.2017a:VA012RN_0013)
 
 
-The requests work with URNs citation regions of an image.
+The requests work with URNs citing regions of an image.
 
 
 ```scala

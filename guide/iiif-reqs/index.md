@@ -80,7 +80,7 @@ println(iiif.linkedMarkdownImage(img, width=Some(150), caption="Folio 12 recto")
 ```
 
 
-The requests work with URNs citation regions of an image.
+The requests work with URNs citing regions of an image.
 
 
 ```scala mdoc
