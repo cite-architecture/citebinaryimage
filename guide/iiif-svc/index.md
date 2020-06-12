@@ -11,8 +11,7 @@ You'll need these two libraries:
 ```scala mdoc
 import edu.holycross.shot.citebinaryimage._
 import edu.holycross.shot.cite._
-// The image citation:
-val imgUrn = Cite2Urn("urn:cite2:hmt:vaimg.2017a:VA012RN_0013")
+
 ```
 
 To construct an `IIIFApi` for a specific image, you need to know:
@@ -29,10 +28,12 @@ In this example, the image service's directory layout reflects the URN of the im
 
 
 ```scala mdoc
-val imgPath = PathUtility.expandedPath(imgUrn)
+// The image citation:
+val imgCollection = Cite2Urn("urn:cite2:hmt:vaimg.2017a:")
+val imgPath = PathUtility.expandedPath(imgCollection)
 val fullPath = pathBase + imgPath
 ```
-And at this point we can construct the `IIIFApi` for our image.
+And at this point we can construct the `IIIFApi` to form requests for any image in that CITE Collection.
 
 ```scala mdoc
 val iif = IIIFApi(baseUrl,fullPath)
