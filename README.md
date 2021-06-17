@@ -4,7 +4,7 @@
 
 `citebinaryimage` is a cross-platform library for retrieving binary image date identified by Cite2 URNs.
 
-## Current version: 3.2.0
+## Current version: 3.2.1
 
 Status:  **active development**. [Release notes](releases.md)
 
@@ -20,11 +20,13 @@ Status:  **active development**. [Release notes](releases.md)
 
 ## Using, building, testing
 
-`citebinaryimage` is compiled for both the JVM and ScalaJS using scala versions 2.11 and 2.12.  Binaries for all platforms are available from jcenter.
+`citebinaryimage` is compiled for both the JVM and ScalaJS using scala versions 2.11 and 2.12.  Binaries for all three versions are available from the Nexus repository on <terracotta.hpcc.uh.edu/nexus>.
 
 If you are using sbt, include `Resolver.jcenterRepo` in your list of resolvers
 
-    resolvers += Resolver.jcenterRepo
+```scala
+	resolvers += "Nexus" at "https://terracotta.hpcc.uh.edu/nexus/repository/maven-releases/",
+```
 
 and add this to your library dependencies:
 

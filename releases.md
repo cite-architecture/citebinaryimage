@@ -1,5 +1,6 @@
 # `citebinaryimage`: release notes
 
+**3.2.1**: Artifact published now at https://terracotta.hpcc.uh.edu/nexus/repository/maven-releases/
 
 **3.2.0**: Support SJS 1.0.0.
 
